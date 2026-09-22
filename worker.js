@@ -1227,7 +1227,7 @@ export class DiscordBot {
 
 
     /*
-     * 봇 자신의 메시지는 이중 인식 방지
+     * 봇 자신의 메시지는 무시
      */
     if (
       message.author &&
@@ -1253,7 +1253,7 @@ export class DiscordBot {
 
 
     /*
-     * 지정된 채널만 처리. 이외 채널은 응답 안함함
+     * 지정된 채널만 처리
      */
     if (
       channelId !==
@@ -1571,7 +1571,26 @@ export class DiscordBot {
    * Discord 메시지 전송
    * ==========================================================
    */
-한
+  async sendDiscordMessage(
+    channelId,
+    content
+  ) {
+
+    const token =
+      this.env.AI_coupang_discord;
+
+
+    if (!token) {
+
+      throw new Error(
+        "AI_coupang_discord 환경변수가 없습니다."
+      );
+
+    }
+
+
+    /*
+     * Discord 메시지는 최대 2000자
      */
     const chunks =
       this.splitMessage(
@@ -1642,7 +1661,7 @@ export class DiscordBot {
 
   /*
    * ==========================================================
-   * 긴 메시지는 다른 창으로 분할 처리
+   * 긴 메시지 분할
    * ==========================================================
    */
   splitMessage(
