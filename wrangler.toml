@@ -3,7 +3,7 @@ main = "worker.js"
 compatibility_date = "2026-09-11"
 
 [triggers]
-crons = ["* * * * *"]
+crons = ["1 * * * *"]
 
 [durable_objects]
 bindings = [
